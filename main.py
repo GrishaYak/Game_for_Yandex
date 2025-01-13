@@ -1,13 +1,15 @@
 import pygame
+import sys
 from constants import *
+from helpfull_functions import *
+import start_screen
 
 
 def main():
-    running = True
-    while running:
+    while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = False
+                terminate()
             if event.type == pygame.KEYDOWN:
                 if event.key in KEYBINDS:
                     action = KEYBINDS[event.key]
@@ -15,15 +17,12 @@ def main():
             if event.type == pygame.KEYUP:
                 if event.key in KEYBINDS:
                     IS_PRESSED[KEYBINDS[event.key]] = False
-
-        if any(IS_PRESSED.values()):
-            screen.fill('#888888')
-        else:
-            screen.fill('#000000')
+        screen.fill(BACKGROUND_COLOR)
         pygame.display.flip()
 
 
 if __name__ == '__main__':
     pygame.init()
     screen = pygame.display.set_mode(SCREEN_SIZE)
+    start_screen.build()
     main()

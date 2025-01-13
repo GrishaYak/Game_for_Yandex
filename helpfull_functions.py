@@ -3,6 +3,11 @@ import sys
 import pygame
 
 
+def terminate():
+    pygame.quit()
+    sys.exit()
+
+
 def load_image(name, colorkey=None):
     fullname = os.path.join('art', name)
     # если файл не существует, то выходим
