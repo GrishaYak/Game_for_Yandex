@@ -5,7 +5,7 @@ from helpfull_functions import *
 import start_screen
 
 
-def main():
+def main(screen):
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -23,6 +23,4 @@ def main():
 
 if __name__ == '__main__':
     pygame.init()
-    screen = pygame.display.set_mode(SCREEN_SIZE)
-    start_screen.build()
-    main()
+    start_screen.main()
