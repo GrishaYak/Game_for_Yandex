@@ -16,7 +16,7 @@ def draw_titles():
 
     font = pygame.font.Font(None, DIFFICULTY_FONT_SIZE)
     line = font.render(DIFFICULTY, True, DIFFICULTY_COLOR)
-    rect = pygame.Rect((SCREEN_SIZE[0] - line.get_width()) // 2, SLIDER_RECT2[1] - 20,
+    rect = pygame.Rect((SCREEN_SIZE[0] - line.get_width()) // 2, SLIDER_RECT2[1] - 40,
                        *line.get_size())
     screen.blit(line, rect)
 
@@ -44,7 +44,7 @@ def draw_start_screen():
 
 def on_lmb_click(mouse_pos):
     global slider_is_pressed
-    if belongs_to(mouse_pos, slider_rect):
+    if belongs_to(mouse_pos, SLIDER_RECT1):
         slider_is_pressed = True
     elif belongs_to(mouse_pos, PLAY_BUTTON):
         started_game.main(screen)
@@ -53,9 +53,9 @@ def on_lmb_click(mouse_pos):
 def move_slider(ok):
     if not ok:
         return
-    left = SLIDER_RECT1.x + SLIDER_RECT1.width // 2
-    right = SLIDER_RECT1.right - SLIDER_RECT1.width // 2
-    slider_rect.x = cut_num(left, pygame.mouse.get_pos()[0], right)
+    left = SLIDER_RECT1.x
+    right = SLIDER_RECT1.right - SLIDER_RECT2.width
+    slider_rect.x = cut_num(left, pygame.mouse.get_pos()[0] - slider_rect.width // 2, right)
 
 
 def main():
