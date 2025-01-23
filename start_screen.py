@@ -26,7 +26,8 @@ def draw_play_btn():
     pygame.draw.rect(screen, PLAY_BUTTON_COLOR, PLAY_BUTTON)
     font = pygame.font.Font(None, 60)
     line = font.render(PLAY_BUTTON_TEXT, True, PLAY_BUTTON_TEXT_COLOR)
-    screen.blit(line, pygame.Rect(PLAY_BUTTON.x + line.get_width() // 2, PLAY_BUTTON.y + line.get_height() // 2,
+    screen.blit(line, pygame.Rect(PLAY_BUTTON.centerx - line.get_width() // 2,
+                                  PLAY_BUTTON.centery - line.get_height() // 2,
                                   PLAY_BUTTON.width, PLAY_BUTTON.height))
 
 

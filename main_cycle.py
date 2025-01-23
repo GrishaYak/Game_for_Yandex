@@ -4,23 +4,10 @@ from constants import *
 from helpfull_functions import *
 import start_screen
 from global_vars import difficult
+from Player import Player
 
-
-class Animation:
-    def __init__(self, *names):
-        self.images = [load_image(el) for el in names]
-        self.id = 0
-
-    def swap(self):
-        self.id = (self.id + 1) % len(self.images)
-
-    def get(self):
-        return self.images[self.id]
-
-
-player = pygame.Surface(PLAYER_SIZE)
-player_animation = Animation('player1.png', 'player2.png')
 all_sprites = pygame.sprite.Group()
+# player = Player(all_sprites)
 
 
 def build(screen):
@@ -45,7 +32,7 @@ def main(screen):
                 if event.key in KEYBINDS:
                     IS_PRESSED[KEYBINDS[event.key]] = False
         screen.fill(MAIN_BACKGROUND_COLOR)
-        screen.blit(player)
+        all_sprites.draw(screen)
         pygame.display.flip()
 
 

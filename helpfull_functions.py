@@ -24,6 +24,7 @@ def load_image(name, colorkey=None):
         image = image.convert_alpha()
     return image
 
+
 def cut_num(left_divide, num, right_divide):
     if num < left_divide:
         return left_divide
