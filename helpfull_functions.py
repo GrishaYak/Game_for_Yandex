@@ -15,12 +15,14 @@ def load_image(name, colorkey=None):
         print(f"Файл с изображением '{fullname}' не найден")
         sys.exit()
     image = pygame.image.load(fullname)
-    return image.convert_alpha()
-
-
-def belongs_to(point, rect1: pygame.Rect):
-    return 0 < point[0] - rect1.x < rect1.width and 0 < point[1] - rect1.y < rect1.height
-
+    if colorkey is not None:
+        image = image.convert()
+        if colorkey == -1:
+            colorkey = image.get_at((0, 0))
+        image.set_colorkey(colorkey)
+    else:
+        image = image.convert_alpha()
+    return image
 
 def cut_num(left_divide, num, right_divide):
     if num < left_divide:

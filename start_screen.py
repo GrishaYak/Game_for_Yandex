@@ -2,8 +2,8 @@ import pygame
 import sys
 from constants import *
 from helpfull_functions import *
-import started_game
-from settings import difficult
+import main_cycle
+from global_vars import difficult
 surfaces = {'play_btn': NULL_RECT, 'slider': NULL_RECT}
 slider_is_pressed = False
 slider_rect = SLIDER_RECT2.copy()
@@ -36,7 +36,7 @@ def draw_slider():
 
 
 def draw_start_screen():
-    screen.fill(BACKGROUND_COLOR)
+    screen.fill(START_BACKGROUND_COLOR)
     draw_titles()
     draw_play_btn()
     draw_slider()
@@ -45,11 +45,11 @@ def draw_start_screen():
 
 def on_lmb_click(mouse_pos):
     global slider_is_pressed
-    if belongs_to(mouse_pos, SLIDER_RECT_BIG):
+    if SLIDER_RECT_BIG.collidepoint(*mouse_pos):
         slider_is_pressed = True
-    elif belongs_to(mouse_pos, PLAY_BUTTON):
+    elif PLAY_BUTTON.collidepoint(*mouse_pos):
         change_difficulty()
-        started_game.main(screen)
+        main_cycle.main(screen)
 
 
 def move_slider(ok):
