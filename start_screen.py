@@ -3,6 +3,7 @@ import sys
 from constants import *
 from helpfull_functions import *
 import started_game
+from settings import difficult
 surfaces = {'play_btn': NULL_RECT, 'slider': NULL_RECT}
 slider_is_pressed = False
 slider_rect = SLIDER_RECT2.copy()
@@ -30,7 +31,7 @@ def draw_play_btn():
 
 
 def draw_slider():
-    pygame.draw.rect(screen, SLIDER_RECT1_COLOR, SLIDER_RECT1)
+    pygame.draw.rect(screen, SLIDER_RECT_BIG_COLOR, SLIDER_RECT_BIG)
     pygame.draw.rect(screen, SLIDER_RECT2_COLOR, slider_rect)
 
 
@@ -44,18 +45,30 @@ def draw_start_screen():
 
 def on_lmb_click(mouse_pos):
     global slider_is_pressed
-    if belongs_to(mouse_pos, SLIDER_RECT1):
+    if belongs_to(mouse_pos, SLIDER_RECT_BIG):
         slider_is_pressed = True
     elif belongs_to(mouse_pos, PLAY_BUTTON):
+        change_difficulty()
         started_game.main(screen)
 
 
 def move_slider(ok):
     if not ok:
         return
-    left = SLIDER_RECT1.x
-    right = SLIDER_RECT1.right - SLIDER_RECT2.width
+    left = SLIDER_RECT_BIG.x
+    right = SLIDER_RECT_BIG.right - SLIDER_RECT2.width
     slider_rect.x = cut_num(left, pygame.mouse.get_pos()[0] - slider_rect.width // 2, right)
+
+
+def change_difficulty():
+    global difficult
+    d = slider_rect.centerx - SLIDER_RECT_BIG.left
+    d /= SLIDER_RECT_BIG.width
+    d = 1 - d
+    d *= 5
+    difficult = d
+    print(d)
+    print(difficult)
 
 
 def main():

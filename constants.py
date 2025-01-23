@@ -24,9 +24,9 @@ PLAY_BUTTON = create_rect([int(SCREEN_SIZE[0] * 0.5), int(SCREEN_SIZE[1] * 0.85)
                           [int(SCREEN_SIZE[0] * 0.4), int(SCREEN_SIZE[1] * 0.1)])
 PLAY_BUTTON_COLOR = '#00009a'
 
-SLIDER_RECT1 = create_rect([int(SCREEN_SIZE[0] * 0.5), int(SCREEN_SIZE[1] * 0.6)],
-                           [int(SCREEN_SIZE[0] * 0.8), int(SCREEN_SIZE[1] * 0.04)])
-SLIDER_RECT1_COLOR = '#550022'
+SLIDER_RECT_BIG = create_rect([int(SCREEN_SIZE[0] * 0.5), int(SCREEN_SIZE[1] * 0.6)],
+                              [int(SCREEN_SIZE[0] * 0.8), int(SCREEN_SIZE[1] * 0.04)])
+SLIDER_RECT_BIG_COLOR = '#550022'
 
 SLIDER_RECT2 = create_rect([int(SCREEN_SIZE[0] * 0.35), int(SCREEN_SIZE[1] * 0.6)],
                            [int(SCREEN_SIZE[0] * 0.1), int(SCREEN_SIZE[1] * 0.04)])
