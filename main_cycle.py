@@ -7,15 +7,13 @@ from global_vars import difficult
 from Player import Player
 
 all_sprites = pygame.sprite.Group()
-# player = Player(all_sprites)
+player = Player(all_sprites)
 
 
 def build(screen):
     print(difficult)
-    sprite = pygame.sprite.Sprite()
-    sprite.image = load_image("bomb.png")
     screen.fill(MAIN_BACKGROUND_COLOR)
-    screen.blit(player, PLAYER_START_POS)
+    screen.blit(player)
     pygame.display.flip()
 
 

@@ -66,7 +66,6 @@ def change_difficulty():
     d = slider_rect.centerx - SLIDER_RECT_BIG.left
     d /= SLIDER_RECT_BIG.width
     d = 1 - d
-    d *= 5
     difficult = d
     print(d)
     print(difficult)
