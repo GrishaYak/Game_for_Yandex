@@ -1,1 +1,0 @@
-# Game_for_Yandex

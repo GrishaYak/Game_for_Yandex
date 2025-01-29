@@ -1,9 +1,10 @@
+import json
+
 import pygame
 import sys
 from constants import *
 from helpfull_functions import *
 import main_cycle
-import global_vars
 surfaces = {'play_btn': NULL_RECT, 'slider': NULL_RECT}
 slider_is_pressed = False
 slider_rect = SLIDER_RECT2.copy()
@@ -36,11 +37,20 @@ def draw_slider():
     pygame.draw.rect(screen, SLIDER_RECT2_COLOR, slider_rect)
 
 
-def draw_start_screen():
+def draw_best_score(best_score):
+    font = pygame.font.Font(None, BEST_SCORE_FONT)
+    line = font.render(BEST_SCORE + str(best_score), True, BEST_SCORE_COLOR)
+    rect = pygame.Rect((SCREEN_SIZE.x - line.get_width()) // 2, SCREEN_SIZE.y * 0.2 - line.get_height() // 2,
+                       *line.get_size())
+    screen.blit(line, rect)
+
+
+def draw_start_screen(best_score):
     screen.fill(START_BACKGROUND_COLOR)
     draw_titles()
     draw_play_btn()
     draw_slider()
+    draw_best_score(best_score)
     pygame.display.flip()
 
 
@@ -49,8 +59,9 @@ def on_lmb_click(mouse_pos):
     if SLIDER_RECT_BIG.collidepoint(*mouse_pos):
         slider_is_pressed = True
     elif PLAY_BUTTON.collidepoint(*mouse_pos):
-        change_difficulty()
-        main_cycle.main()
+        for k in IS_PRESSED:
+            IS_PRESSED[k] = False
+        main_cycle.main(get_difficulty())
 
 
 def move_slider(ok):
@@ -61,15 +72,17 @@ def move_slider(ok):
     slider_rect.x = cut_num(left, pygame.mouse.get_pos()[0] - slider_rect.width // 2, right)
 
 
-def change_difficulty():
+def get_difficulty():
     d = slider_rect.centerx - SLIDER_RECT_BIG.left
     d /= SLIDER_RECT_BIG.width
     d = 1 - d
-    global_vars.difficult = d
+    return d
 
 
 def main():
     global slider_is_pressed
+    with open('data.json') as f:
+        best_score = json.load(f)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -79,7 +92,7 @@ def main():
             else:
                 slider_is_pressed = False
         move_slider(slider_is_pressed)
-        draw_start_screen()
+        draw_start_screen(best_score)
         CLOCK.tick(FPS)
 
 
