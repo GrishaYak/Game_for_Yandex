@@ -3,7 +3,7 @@ import sys
 from constants import *
 from helpfull_functions import *
 import main_cycle
-from global_vars import difficult
+import global_vars
 surfaces = {'play_btn': NULL_RECT, 'slider': NULL_RECT}
 slider_is_pressed = False
 slider_rect = SLIDER_RECT2.copy()
@@ -50,7 +50,7 @@ def on_lmb_click(mouse_pos):
         slider_is_pressed = True
     elif PLAY_BUTTON.collidepoint(*mouse_pos):
         change_difficulty()
-        main_cycle.main(screen)
+        main_cycle.main()
 
 
 def move_slider(ok):
@@ -62,13 +62,10 @@ def move_slider(ok):
 
 
 def change_difficulty():
-    global difficult
     d = slider_rect.centerx - SLIDER_RECT_BIG.left
     d /= SLIDER_RECT_BIG.width
     d = 1 - d
-    difficult = d
-    print(d)
-    print(difficult)
+    global_vars.difficult = d
 
 
 def main():
