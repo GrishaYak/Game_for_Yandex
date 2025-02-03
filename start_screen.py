@@ -1,5 +1,4 @@
 import json
-
 import pygame
 import sys
 from constants import *
@@ -59,9 +58,13 @@ def on_lmb_click(mouse_pos):
     if SLIDER_RECT_BIG.collidepoint(*mouse_pos):
         slider_is_pressed = True
     elif PLAY_BUTTON.collidepoint(*mouse_pos):
-        for k in IS_PRESSED:
-            IS_PRESSED[k] = False
-        main_cycle.main(get_difficulty())
+        launch_the_game()
+
+
+def launch_the_game():
+    for k in IS_PRESSED:
+        IS_PRESSED[k] = False
+    main_cycle.main(get_difficulty())
 
 
 def move_slider(ok):
@@ -91,6 +94,9 @@ def main():
                 on_lmb_click(pygame.mouse.get_pos())
             else:
                 slider_is_pressed = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    launch_the_game()
         move_slider(slider_is_pressed)
         draw_start_screen(best_score)
         CLOCK.tick(FPS)
