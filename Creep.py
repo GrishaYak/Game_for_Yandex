@@ -23,8 +23,8 @@ class Creep(pygame.sprite.Sprite):
 
     def generate_start_pos_dir(self):
         self.degree = randint(0, 359)
-        x = randint(1, SCREEN_SIZE.x - self.image.get_width() - 2)
-        y = randint(0, SCREEN_SIZE.y - self.image.get_height() - 2)
+        x = randint(1, int(SCREEN_SIZE.x - self.image.get_width() - 2))
+        y = randint(0, int(SCREEN_SIZE.y - self.image.get_height() - 2))
         if 315 <= self.degree or self.degree < 45:
             self.start_pos = [x, SCREEN_SIZE.y - self.image.get_height() - 2]
         elif 45 <= self.degree < 135:

@@ -1,7 +1,7 @@
 import pygame
 NULL_RECT = pygame.rect.Rect(0, 0, 0, 0)
 CLOCK = pygame.time.Clock()
-SCREEN_SIZE = pygame.Vector2(720, 720)
+SCREEN_SIZE = pygame.Vector2(480, 720)
 KEYBINDS = {119: 'up', 97: 'left', 115: 'down', 100: 'right',
             1073741906: 'up', 1073741904: 'left', 1073741905: 'down', 1073741903: 'right'}
 IS_PRESSED = {'up': False, 'left': False, 'down': False, 'right': False}
