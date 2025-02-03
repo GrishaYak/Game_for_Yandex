@@ -84,9 +84,9 @@ def get_difficulty():
 
 def main():
     global slider_is_pressed
-    with open('data.json') as f:
-        best_score = json.load(f)
     while True:
+        with open('data.json') as f:
+            best_score = json.load(f)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 terminate()
